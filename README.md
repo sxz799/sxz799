@@ -1,4 +1,4 @@
-### Hi there 👋
+![Profile](https://github-readme-stats.vercel.app/api?username=sxz799&show_icons=true&theme=dark)
 
 <!--
 **sxz799/sxz799** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
