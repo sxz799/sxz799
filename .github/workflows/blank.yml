@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  job1:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: 查看文件1
+      run: |
+        ls
+        cat demo.md
+        echo 111 > demo.md
+        echo 222 > demo2.md
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: 查看文件2
+      run: |
+        ls
+        cat demo.md
+
+
+
