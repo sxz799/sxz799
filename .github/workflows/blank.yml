@@ -1,34 +1,34 @@
-name: CI
+name: 文件传递示例
 
-on:
-  push:
-    branches: [main]
+on: [push]
 
 jobs:
   job1:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - name: 检出代码
+        uses: actions/checkout@v2
 
-    - name: 查看文件1
-      run: |
-        ls
-        cat demo.md
-        echo 111 > demo.md
-        echo 222 > demo2.md
+      - name: 生成文件
+        run: echo "这是 job1 生成的文件内容" > generated-file.txt
+
+      - name: 传递文件
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: generated-file.txt
+
   job2:
-    needs: job1
     runs-on: ubuntu-latest
-    
+    needs: job1
     steps:
-    - uses: actions/checkout@v3
+      - name: 检出代码
+        uses: actions/checkout@v2
 
-    - name: 查看文件2
-      run: |
-        ls
-        cat demo.md
+      - name: 下载文件
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
 
-
-
+      - name: 显示文件内容
+        run: cat generated-file.txt
